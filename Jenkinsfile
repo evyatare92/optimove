@@ -18,7 +18,7 @@ pipeline
         }
         stage("deploy to kubernetes"){
             steps{
-                bat script: "C:\\Windows\\System32\\helm.exe upgrade ip-reverse helm\\ip-reverse --kubeconfig C:\\Users\\evyat\\.kube\\config"
+                bat script: "\"${tool 'helm'}\" upgrade ip-reverse helm\\ip-reverse --kubeconfig C:\\Users\\evyat\\.kube\\config"
             }
         }
     }
