@@ -18,7 +18,7 @@ pipeline
         }
         stage("deploy to kubernetes"){
             steps{
-                sh script: "helm upgrade ip-reverse helm/ip-reverse --kubeconfig C:/Users/evyat/.kube/config"
+                sh script: "helm upgrade ip-reverse helm/ip-reverse --kubeconfig config"
             }
         }
     }
