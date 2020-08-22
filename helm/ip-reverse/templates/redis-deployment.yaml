@@ -1,0 +1,31 @@
+{{- $application := .Values.applications.db -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $application.name }}
+  labels:
+    db: {{ $application.name }}
+spec:
+  selector:
+    matchLabels:
+      db: {{ $application.name }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        db: {{ $application.name }}
+    spec:
+      containers:
+      - name: {{ $application.name }}
+        image: {{ $application.image }}
+        resources:
+          requests:
+            cpu: {{ $application.cpu }}
+            memory: {{ $application.memory }}
+        volumeMounts:
+            - name: redis-persistent-storage
+              mountPath: /data
+      volumes:
+      - name: redis-persistent-storage
+        persistentVolumeClaim:
+          claimName: redis-pv-claim

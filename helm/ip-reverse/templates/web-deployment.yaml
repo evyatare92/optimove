@@ -1,0 +1,37 @@
+{{- $application := .Values.applications.web -}}
+{{- $service := .Values.services.db -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $application.name }}
+  labels:
+    app: {{ $application.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ $application.name }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ $application.name }}
+    spec:
+      containers:
+      - name: {{ $application.name }}
+        image: {{ $application.image }}
+        resources:
+          requests:
+            cpu: {{ $application.cpu }}
+            memory: {{ $application.memory }}
+        env:
+        - name: REDIS_SERVER
+          value: {{ $service.name }}
+        - name: REDIS_PORT
+          value: "{{ $service.port }}"
+        - name: REDIS_KEY
+          value: {{ $application.rediskey }}
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+                name: db-secret
+                key: password

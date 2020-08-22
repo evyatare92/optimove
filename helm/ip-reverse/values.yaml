@@ -1,0 +1,22 @@
+applications:
+  db:
+    image: evyatare92/redis
+    name: redis
+    cpu: 200m
+    memory: 512Mi
+    size: 5Gi
+  web:
+    image: evyatare92/ip-reverse
+    name: ip-reverse
+    cpu: 100m
+    memory: 256Mi
+    rediskey: ip-reverse
+services:
+  db:
+    name: redis-svc
+    type: ClusterIP
+    port: 6379
+  web:
+    name: reverse-ip
+    type: ClusterIP
+    port: 80

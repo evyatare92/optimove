@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ip-reverse-path
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: ipreverse.evyatare.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ .Values.services.web.name }}
+          servicePort: http

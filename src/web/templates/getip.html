@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+<script>
+    function getClientIp(){
+        $.getJSON('https://ipapi.co/json/', function(data) {
+            var protocol = window.location.protocol;
+            var hostname = window.location.hostname;
+            var port = window.location.port;
+            var url = protocol + '//' + hostname + ':' + window.location.port + "/reverse?ip=" + data.ip
+            window.open(url, '_self')
+        });
+    }
+</script>
+<body onload='getClientIp()'>
+
+</body>
+</html>

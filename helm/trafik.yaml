@@ -1,0 +1,20 @@
+dashboard:
+  enabled: true
+  domain: traefik.evyatare.com
+rbac:
+  enabled: true
+ssl:
+  enabled: true
+  enforced: true
+  generateTLS: true
+  defaultCN: "*.evyatare.com"
+  defaultSANList:
+    - "*.evyatare.com"
+acme:
+  domains:
+    enabled: true
+    domainsList:
+      - main: "*.evyatare.com"
+        sans:
+          - "*.evyatare.com"
+    

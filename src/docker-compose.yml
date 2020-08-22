@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+  redis:
+    build: src/redis
+    image: evyatare92/redis
+    restart: always
+  producer:
+    build: src/web
+    image: evyatare92/ip-reverse
+    restart: always
