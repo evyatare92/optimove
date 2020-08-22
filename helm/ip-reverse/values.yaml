@@ -11,6 +11,7 @@ applications:
     cpu: 100m
     memory: 256Mi
     rediskey: ip-reverse
+    autosacleRequestsPerSecond: 10
 services:
   db:
     name: redis-svc
