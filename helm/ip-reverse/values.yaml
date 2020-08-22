@@ -12,6 +12,9 @@ applications:
     memory: 256Mi
     rediskey: ip-reverse
     autosacleRequestsPerSecond: 10
+    replicaCount: 1
+    minReplicas: 2
+    maxReplicas: 10
 services:
   db:
     name: redis-svc

@@ -9,10 +9,10 @@ spec:
     apiVersion: extensions/v1beta1
     kind: Deployment
     name: {{ $application.name }}
-  minReplicas: 2
-  maxReplicas: 10
+  minReplicas: {{ $application.minReplicas }}
+  maxReplicas: {{ $application.maxReplicas }}
   metrics:
   - type: Pods
     pods:
       metricName: http_requests
-      targetAverageValue: 10
+      targetAverageValue: {{ $application.autosacleRequestsPerSecond }}
